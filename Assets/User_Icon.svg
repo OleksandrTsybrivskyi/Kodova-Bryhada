@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Written by Treer (gitlab.com/Treer) -->
+
+<svg
+   version="1.1"
+   width="600"
+   height="600"
+   fill="white"
+   id="svg4"
+   sodipodi:docname="user-icon.svg"
+   inkscape:version="1.3.2 (1:1.3.2+202404261509+091e20ef0f)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview4"
+     pagecolor="#ffffff"
+     bordercolor="#999999"
+     borderopacity="1"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="0.71166667"
+     inkscape:cx="129.97658"
+     inkscape:cy="417.33021"
+     inkscape:window-width="1920"
+     inkscape:window-height="945"
+     inkscape:window-x="0"
+     inkscape:window-y="32"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg4" />
+  <title
+     id="title1">Abstract user icon</title>
+  <defs
+     id="defs1">
+    <clipPath
+       id="circular-border">
+      <circle
+         cx="300"
+         cy="300"
+         r="250"
+         id="circle1" />
+    </clipPath>
+  </defs>
+  <circle
+     cx="300"
+     cy="300"
+     r="280"
+     fill="black"
+     id="circle2"
+     style="fill:#303030;fill-opacity:1" />
+  <circle
+     cx="300"
+     cy="230"
+     r="100"
+     id="circle3"
+     inkscape:label="circle3"
+     style="fill:#fdfdfd;fill-opacity:1" />
+  <circle
+     cx="300"
+     cy="550"
+     r="190"
+     clip-path="url(#circular-border)"
+     id="circle4"
+     style="fill:#fdfdfd;fill-opacity:1" />
+</svg>
