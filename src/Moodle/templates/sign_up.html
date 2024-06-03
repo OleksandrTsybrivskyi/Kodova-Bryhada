@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block title %}Log in{% endblock %}
+{% block body %}
+<div id="menu">
+    <a href="/login" class="button">Увійти</a>
+    <a href="/sign_up" class="button">Зареєструватися</a></div>
+<div class="container">
+        <form class="form" method="post">
+            <h2 class="form_name">Створити</h2>
+            <div class="form_group">
+                <input type="radio" id="student" name="role" value="student">
+                <label for="student">Учень</label>
+                <input type="radio" id="teacher" name="role" value="teacher">
+                <label for="teacher">Вчитель</label>
+            </div>
+            <div class="form_group">
+                <input type="email" id="email" name="email" placeholder="Електронна пошта" required>
+            </div>
+            <div class="form_group">
+                <input type="text" id="full_name" name="full_name" placeholder="Прізвище та ім'я" required>
+            </div>
+            <div class="form_group">
+                <input type="password" id="password" name="password" placeholder="Пароль" required>
+            </div>
+            <div class="form_group">
+                <input type="password" id="password2" name="password2" placeholder="Повторіть пароль" required>
+            </div>
+            <div class="form_group">
+                <input type="submit" value="Створити">
+            </div>
+        </form>
+    </div>
+
+{% endblock %}
