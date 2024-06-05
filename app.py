@@ -20,6 +20,17 @@ class Account(db.Model):
     def __repr__(self):
         return '<Account %r>' % self.id
 
+class Subject(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    subject_name = db.Column(db.String(100), nullable=False)
+    email = db.Column(db.String(30), nullable=False, unique=True)
+    role = db.Column(db.String(30), nullable=False)
+    password = db.Column(db.String(100), nullable=False)
+    date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+
+    def __repr__(self):
+        return '<Subject %r>' % self.id
+
 with app.app_context():
     account = Account(email="Admin@gmail.com", full_name="Admin", password="Admin", role="Admin")
     try:
