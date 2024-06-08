@@ -20,3 +20,11 @@ def test_admin_login():
     ),follow_redirects=True)
     assert response.request.path == '/account/Admin'
 
+
+@pytest.mark.parametrize(
+    ("email", "role", "fill_name", "password", "password2"),
+    (
+        ("abc@gmail.com", "password"),
+    ),
+)
+def test_sign_up()
