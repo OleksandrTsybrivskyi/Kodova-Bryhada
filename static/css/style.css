@@ -116,7 +116,7 @@ background-color:#34495e;
 .sidebar {
     height: 100%;
     width: 250px; /* Ширина бокового меню */
-    position: fixed; /* Фіксована позиція, щоб залишатися видимим під час прокрутки */
+
     top: 0;
     left: 0;
     background-color: #333; /* Колір фону бокового меню */
