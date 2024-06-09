@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}Admin{% endblock %}
+{% block body %}
+<form method="post">
+    <h1>Add subject</h1>
+    <input type="text" name="subject_name" value="ведіть імя предмету"><br>
+    <input type="email" name="teacher_email" value="ведіть емейл викладача"><br>
+    <input type="submit" value="додати предмет">
+</form>
+{% if subjects %}
+{% for subject in subjects %}
+<h3>{{subject.subject_name}}</h3>
+<h3>{{subject.id}} код для приєднання до предмету</h3>
+{% endfor %}
+
+{% endif %}
+{% endblock %}

@@ -80,10 +80,27 @@ def login():
     return render_template("login.html", message=False)
 
 
-@app.route("/account/<int:id>",methods=['POST', 'GET'])
+@app.route("/account/<int:id>")
 def your_account(id):
     account = Account.query.get(id)
     return render_template("your_account.html", account=account)
+
+@app.route("/greate_subgect/admin",methods=['POST', 'GET'])
+def greate_subgect_admin():
+    if request.method == "POST":
+        subject_name = request.form["subject_name"]
+        teacher_email = request.form["teacher_email"]
+
+        try:
+            teacher_id = Account.query.filter_by(email=teacher_email).first().id
+            subject = Subject(subject_name=subject_name, teacher_id=teacher_id)
+            db.session.add(subject)
+            db.session.commit()
+            subjects = Subject.query.all()
+            return render_template("admin_add_subgect.html", subjects=subjects)
+        except:
+            return render_template("admin_add_subgect.html", message="error")
+    return render_template("admin_add_subgect.html")
 
 @app.route("/greate_subgect/<int:id>", methods=['POST', 'GET'])
 def greate_subgect(id):
