@@ -145,6 +145,7 @@ def sign_up():
 
             except IntegrityError:
                 # Обробка випадку, коли обліковий запис з такою електронною адресою вже існує
+                db.session.rollback()
                 return render_template("sign_up.html", message="Цей обліковий запис вже існує")
 
     else:
