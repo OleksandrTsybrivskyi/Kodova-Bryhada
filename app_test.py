@@ -117,3 +117,21 @@ def test_login_successful(email, password):
 def test_your_account(id, expected):
     response = app.app.test_client().post('/account/'+id, follow_redirects=True)
     assert response.request.path == expected
+
+
+@pytest.mark.parametrize(
+    ("id", "subject_name"),
+    (
+        ("2", "abcABC абвАБВ123!@№"),
+        ("3", "Математика"),
+        ("3", "Математика"),
+        ("1", ""),
+    ),
+)
+def test_greate_subgect(id, subject_name):
+    response = app.app.test_client().post('/greate_subgect/'+id, data=dict(
+        subject_name=subject_name,
+    ),follow_redirects=True)
+    
+
+    # assert "/greate_subgect" in response.request.path
