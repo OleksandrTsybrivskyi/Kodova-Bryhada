@@ -145,3 +145,17 @@ background-color:#34495e;
     background-color: #555;
     border-radius:10px;/* Колір фону при наведенні курсору */
 }
+table, th, td {
+  border:1px solid black;
+}
+
+.pisok{
+margin: 20px auto;
+    padding: 20px;
+    color:#0000ff;
+    background-color: #ffffff;
+    max-width: 800px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    }

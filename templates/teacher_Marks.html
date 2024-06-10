@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}{{ account.full_name }}{% endblock %}
+{% block body %}
+<form method="post">
+  <label for="subjects">Виберіть предмет:</label>
+  <select name="subject_name" id="subjects">
+    {% for subject in subjects %}
+    <option value="{{ subject.subject_name }}">{{ subject.subject_name }}</option>
+    {% endfor %}
+  </select>
+  <br><br>
+  <input type="submit" value="шукати">
+</form>
+<table>
+  <tr>
+    <th>Прізвище та ім'я</th>
+    <th>Оцінки</th>
+  </tr>
+  {% for ss in sss %}
+  <tr>
+    <th>{{ ss[0]}}</th>
+    {% for mark in ss[1] %}
+    <td>{{ mark.value }}</td>
+    {% endfor %}
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}

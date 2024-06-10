@@ -9,8 +9,9 @@
 </form>
 {% if subjects %}
 {% for subject in subjects %}
-<h3>{{subject.subject_name}}</h3>
-<h3>{{subject.id}} код для приєднання до предмету</h3>
+<div class="pisok">
+<h3>предмет: {{subject.subject_name}}</h3>
+    <h3>{{subject.id}} код для приєднання до предмету</h3></div>
 {% endfor %}
 {% elif sss %}
 {% for ss in sss %}

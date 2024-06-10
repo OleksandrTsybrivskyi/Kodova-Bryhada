@@ -29,7 +29,7 @@ class Subject(db.Model):
 
 class Mark(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    SS_id = db.Column(db.Integer)
+    ss_id = db.Column(db.Integer)
     value = db.Column(db.Integer)
     date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
 
@@ -105,7 +105,6 @@ def greate_subgect_admin():
 @app.route("/greate_subgect/<int:id>", methods=['POST', 'GET'])
 def greate_subgect(id):
     account = Account.query.get(id)
-    print(account.role)
     if account.role == "вчитиль":
         if request.method == "POST":
             subject_name = request.form["subject_name"]
@@ -141,7 +140,6 @@ def greate_subgect(id):
 def sign_up():
     if request.method == "POST":
         email = request.form["email"]
-        print(request.form.get("role"))
         role = "учень" if request.form.get("role") == "student" else "вчитиль"
         full_name = request.form["full_name"]
         password = request.form["password"]
@@ -167,6 +165,20 @@ def sign_up():
 
     else:
         return render_template("sign_up.html")
+
+@app.route("/account/marks/<int:id>", methods=['POST', 'GET'])
+def marks(id):
+    account = Account.query.get(id)
+    if account.role == "вчитиль":
+        subjects = Subject.query.filter_by(teacher_id=id).all()
+        if request.method == "POST":
+            subject_name = request.form["subject_name"]
+            subject = Subject.query.filter_by(subject_name=subject_name).first()
+            sss = [[Account.query.get(ss.user_id).full_name, Mark.query.filter_by(ss_id=ss.id).all()] for ss in StudentSubject.query.filter_by(subject_id=subject.id).all()]
+            return render_template("teacher_Marks.html", account=account, sss=sss, subjects=subjects)
+        else:
+            return render_template("teacher_Marks.html", account=account, subjects=subjects)
+
 
 
 if __name__ == "__main__":
