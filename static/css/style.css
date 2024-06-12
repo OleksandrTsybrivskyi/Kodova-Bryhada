@@ -9,53 +9,117 @@
 }
 
 body{
-background-color:var(--white-color);
-margin: 0; /* Видаляємо відступи браузера */
-display: grid;
-height: 100vh; /* Встановлюємо висоту body на весь висоту вікна */
-grid-template-rows: 70px auto 80px;}
+   font-family: "Roboto", sans-serif;
+    background-color:var(--white-color);
+    margin: 0; /* Видаляємо відступи браузера */
+    display: grid;
+    height: 100vh; /* Встановлюємо висоту body на весь висоту вікна */
+    grid-template-rows: 70px auto 80px;}
 
 #sign-conteiner{
-background-color:var(--dark-blue-color);
-float:top;
-width:100%;}
+    background-color:var(--dark-blue-color);
+    float:top;
+    width:100%;}
 
 #sign-conteiner img{
-width:50px;
-height:50px;
-padding: 3px 50px}
+    width:50px;
+    height:50px;
+    padding: 3px 50px}
 
 #sign-conteiner a{
-float:right;
-text-decoration: none;
-color:var(--dark-grey-color);
-border:2px solid var(--dark-grey-color);
-padding:10px 20px;
-margin:5px 10px;
+    float:right;
+    text-decoration: none;
+    color:var(--dark-grey-color);
+    border:2px solid var(--dark-grey-color);
+    padding:10px 20px;
+    margin:5px 10px;
 }
+a{
+    text-decoration: none;}
 #sign-conteiner img{
-height:50px;
-width:50px;
-padding:10px 30px}
+    height:50px;
+    width:50px;
+    padding:10px 30px}
 
 footer{
-border-top:2px solid var(--dark-grey-color);}
+    border-top:2px solid var(--dark-grey-color);}
 
 footer *{
-display:inline-block;
+    display:inline-block;
+    color:var(--black-color);
 }
 footer img{
-float:left;
-height:50px;
-width:50px;
-padding:10px}
+    float:left;
+    height:50px;
+    width:50px;
+    padding:10px}
 
 footer #git_hub_img{
-float:right;}
+    float:right;
+    width:30px;
+    height:30px;
+    margin:10px;}
 
 footer h3{
-margin-top:25px}
+    margin-top:25px}
 
 footer p{
-text-align:center;
-margin:25px 200px}
+    text-align:center;
+    margin:25px 200px}
+
+#login_conteiner{
+    display:flex;
+    align-items:center;
+    justify-content:center;}
+
+#home_text b{
+    color:var(--orange-color);
+}
+
+#home_text{
+    width:30%;
+    margin:5%;}
+
+#home_text *{
+color:var(--black-color);
+}
+#home_img{
+    width:30%;
+    margin:5%;
+    background-color:var(--dark-blue-color);
+    padding:20px;
+}
+
+#home_text #sign{
+    background-color:var(--orange-color);
+    color:var(--white-color);
+}
+#home_text #login{
+    background-color:var(--light-grey-color);
+    color:var(--black-color);
+}
+#home_text a{
+    padding:10px;
+    margin:30px;
+    border:1px solid var(--dark-grey-color)}
+
+form {
+    text-align:center;}
+
+form input{
+width:98%;
+margin:1%;
+height:30px;}
+
+.orange-button{
+    background-color:var(--orange-color);
+    color:var(--white-color);
+    width:100%;
+    border:1px solid var(--dark-grey-color)}
+
+form a{
+color:var(--blue-color);}
+
+form input[type="radio"] {
+  width: 20px;
+}

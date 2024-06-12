@@ -1,10 +1,10 @@
-{% extends 'base.html' %}
+{% extends 'after_login_base.html' %}
 {% block title %}Admin{% endblock %}
 {% block body %}
 <form method="post">
     <h1>Add subject</h1>
-    <input type="text" name="subject_name" value="ведіть імя предмету"><br>
-    <input type="email" name="teacher_email" value="ведіть емейл викладача"><br>
+    <input type="text" name="subject_name" placeholder="ведіть імя предмету"><br>
+    <input type="email" name="teacher_email" placeholder="ведіть емейл викладача"><br>
     <input type="submit" value="додати предмет">
 </form>
 {% if subjects %}

@@ -1,27 +1,14 @@
 {% extends 'befor_login_base.html' %}
 {% block title %}Log in{% endblock %}
 {% block body %}
-<div id="menu">
-    <a href="/login" class="button">Увійти</a>
-    <a href="/sign_up" class="button">Зареєструватися</a></div>
-<div class="container">
-    <div class="form">
-        <form method="post">
-            <h1 class="form_name">Увійти</h1>
-            <div class="form_group">
-                <label for="email">Електронна пошта:</label><br>
-                <input type="email" name="email" id="email" placeholder="Електронна пошта">
-            </div>
-            <div class="form_group">
-                <label for="password">Пароль:</label><br>
-                <input type="password" name="password" id="password" placeholder="Пароль">
-            </div>
-            <div class="form_group">
-                <input type="submit" value="Увійти">
-            </div>
-        </form>
-    </div>
-</div>
 
+        <form method="post">
+            <h1>Вхід</h1>
+            <p>Введіть данні свого акаунта Edulandia</p>
+                <input type="email" name="email" id="email" placeholder="Електронна пошта"><br>
+                <input type="password" name="password" id="password" placeholder="Пароль"><br>
+                <input type="submit" class="orange-button" value="Увійти">
+            <p>Не маєте акаунта? <a href="/sign_up">створіть його</a></p>
+        </form>
 
 {% endblock %}

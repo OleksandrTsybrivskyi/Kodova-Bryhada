@@ -2,31 +2,19 @@
 {% block title %}Log in{% endblock %}
 {% block body %}
 
-<div class="container">
-        <form class="form" method="post">
-            <h2 class="form_name">Створити</h2>
-            <div class="form_group">
+        <form method="post">
+            <h1>Реєстрація</h1>
+            <p>Створіть свій акаунт на  Edulandia</p>
                 <input type="radio" id="student" name="role" value="student">
                 <label for="student">Учень</label>
                 <input type="radio" id="teacher" name="role" value="teacher">
-                <label for="teacher">Вчитель</label>
-            </div>
-            <div class="form_group">
-                <input type="email" id="email" name="email" placeholder="Електронна пошта" required>
-            </div>
-            <div class="form_group">
-                <input type="text" id="full_name" name="full_name" placeholder="Прізвище та ім'я" required>
-            </div>
-            <div class="form_group">
-                <input type="password" id="password" name="password" placeholder="Пароль" required>
-            </div>
-            <div class="form_group">
-                <input type="password" id="password2" name="password2" placeholder="Повторіть пароль" required>
-            </div>
-            <div class="form_group">
-                <input type="submit" value="Створити">
-            </div>
+                <label for="teacher">Вчитель</label><br>
+                <input type="email" id="email" name="email" placeholder="Електронна пошта" required><br>
+                <input type="text" id="full_name" name="full_name" placeholder="Прізвище та ім'я" required><br>
+                <input type="password" id="password" name="password" placeholder="Пароль" required><br>
+                <input type="password" id="password2" name="password2" placeholder="Повторіть пароль" required><br>
+                <input type="submit" class="orange-button" value="Створити"><br>
+                <p>Маєте акаунта? <a href="/login">Увійти у нього</a></p>
         </form>
-    </div>
 
 {% endblock %}
