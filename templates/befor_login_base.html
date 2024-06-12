@@ -1,0 +1,14 @@
+{% extends 'root.html' %}
+{% block title %}Edulandia{% endblock %}
+{% block root %}
+<nav id="sign-conteiner">
+    <img src="static/Assets/Edulandia_Logo.svg">
+    <a href="/login">Увійти</a>
+    <a href="/sign_up" >Зареєструватися</a></div>
+</nav>
+<main>{% block body %}{% endblock %}</main>
+<footer>
+        <h3>Edulandia</h3>
+    <img src="static/Assets/Edulandia_Logo_Black.svg"><img id="git_hub_img" src="">    <p>Створення в рамках всеукраїнського командного турніру з програмування</p>
+</footer>
+{% endblock %}
