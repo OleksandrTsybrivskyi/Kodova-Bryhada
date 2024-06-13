@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from sqlalchemy.exc import IntegrityError
+import math
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = 'sqlite:///spl.db'
@@ -178,7 +179,32 @@ def marks(id):
             return render_template("teacher_Marks.html", account=account, sss=sss, subjects=subjects)
         else:
             return render_template("teacher_Marks.html", account=account, subjects=subjects)
+        
 
+@app.route("/account/students_list/page=<int:page>/<int:id>", methods=['POST', 'GET'])
+def students_list(id, page):
+    account = Account.query.get(id)
+    if request.method == "POST":
+        if "Назад" in request.form:
+            print(1)
+        if "Вперід" in request.form:
+            print(2)
+    page_size=4
+    try:
+        students_list = Account.query.filter_by(role="учень").order_by(Account.full_name).all()
+
+        #Перевіряємо, чи ми не зайшли на номер сторінки, якої немає
+        pages_count = math.ceil(len(students_list) / page_size)
+        if page < 1:
+            page = 1
+        elif page > pages_count:
+            page = pages_count
+        
+        students_list = students_list[page_size*(page-1):page_size*page]
+
+        return render_template("students_list.html", account=account, students_list=students_list, page=page)
+    except:
+        return render_template("students_list.html", message="error", account=account, page=page)
 
 
 if __name__ == "__main__":
