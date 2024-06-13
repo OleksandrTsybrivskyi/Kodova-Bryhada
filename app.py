@@ -207,5 +207,31 @@ def students_list(id, page):
         return render_template("students_list.html", message="error", account=account, page=page)
 
 
+@app.route("/account/teachers_list/page=<int:page>/<int:id>", methods=['POST', 'GET'])
+def teachers_list(id, page):
+    account = Account.query.get(id)
+    if request.method == "POST":
+        if "Назад" in request.form:
+            print(1)
+        if "Вперід" in request.form:
+            print(2)
+    page_size=4
+    try:
+        teachers_list = Account.query.filter_by(role="вчитиль").order_by(Account.full_name).all()
+
+        #Перевіряємо, чи ми не зайшли на номер сторінки, якої немає
+        pages_count = math.ceil(len(teachers_list) / page_size)
+        if page < 1:
+            page = 1
+        elif page > pages_count:
+            page = pages_count
+        
+        teachers_list = teachers_list[page_size*(page-1):page_size*page]
+
+        return render_template("teachers_list.html", account=account, teachers_list=teachers_list, page=page)
+    except:
+        return render_template("teachers_list.html", message="error", account=account, page=page)
+
+
 if __name__ == "__main__":
     app.run(debug=True)
