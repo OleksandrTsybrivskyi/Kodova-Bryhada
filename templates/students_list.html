@@ -3,6 +3,7 @@
 {% block body %}
     <h1>{{ account.full_name }} - {{account.role}}</h1>
 <form method="post">
+    <h1>Список учнів</h1>
     <a href="/account/students_list/page={{ page-1 }}/{{ account.id }}">Назад</a>
     <h1>{{page}}</h1>
     <a href="/account/students_list/page={{ page+1 }}/{{ account.id }}">Вперід</a>
