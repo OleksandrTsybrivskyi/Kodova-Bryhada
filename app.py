@@ -46,6 +46,12 @@ class StudentSubject(db.Model):
     def __repr__(self):
         return '<StudentSubject %r>' % self.id
 
+class Articles(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    article_topic = db.Column(db.String(100), nullable=False)
+    article_text = db.Column(db.String(1000), nullable=False)
+    teacher_id = teacher_id = db.Column(db.Integer)
+
 with app.app_context():
     account = Account(email="Admin@gmail.com", full_name="Admin", password="Admin", role="Admin")
     try:
