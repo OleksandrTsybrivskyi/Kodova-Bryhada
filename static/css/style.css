@@ -140,3 +140,7 @@ color:var(--orange-color);
 border:3px solid var(--orange-color);
 padding:20px;
 margin:20px;}
+
+#page_name{
+    float:left;
+}
