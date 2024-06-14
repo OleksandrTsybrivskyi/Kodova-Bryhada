@@ -32,7 +32,7 @@ body{
     font-size:13pt;
     color:var(--dark-grey-color);
     padding:10px 5px;
-    margin:5px 5px;
+    margin:13px 15px;
 }
 a{
     text-decoration: none;}
@@ -130,13 +130,13 @@ width:30%;
  margin:30px;
  display:flex;
  justify-content:between-space;
- flex-wrap: wrap;
- width:30%;}
+ flex-wrap: wrap;}
 
 .subject-block{
-
-background-color:var(--white-color);
-color:var(--orange-color);
-border:3px solid var(--orange-color);
+display:inline-block;
+width:20%;
+background-color:var(--dark-blue-color);
+color:var(--light-grey-color);
 padding:20px;
-margin:20px;}
+margin:20px;
+box-shadow:1px 1px 20px var(--dark-blue-color);}
