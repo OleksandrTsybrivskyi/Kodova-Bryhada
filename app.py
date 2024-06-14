@@ -52,6 +52,14 @@ class Articles(db.Model):
     article_text = db.Column(db.String(1000))
     teacher_id = db.Column(db.Integer)
 
+class Achievements(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    achievement_topic = db.Column(db.String(100), nullable=False)
+    achievement_text = db.Column(db.String(1000))
+    teacher_id = db.Column(db.Integer)
+    recepient_id = db.Column(db.Integer)
+
+
 with app.app_context():
     account = Account(email="Admin@gmail.com", full_name="Admin", password="Admin", role="Admin")
     try:
@@ -241,6 +249,43 @@ def teachers_list(id, page):
 
 @app.route("/account/articles_list/page=<int:page>/<int:id>", methods=['POST', 'GET'])
 def articles_list(id, page):
+    account = Account.query.get(id)
+
+    # Можливість створити новину
+    if account.role == "вчитиль" or account.role == "Admin":
+        if request.method == "POST":
+            article_topic = request.form["article_topic"]
+            article_text = request.form["article_text"]
+            article = Articles(article_topic=article_topic, article_text=article_text, teacher_id=id)
+
+            try:
+                db.session.add(article)
+                db.session.commit()
+            except:
+                db.session.rollback()
+                return render_template("articles_list.html", message="Помилка")
+
+    page_size=4 # Задаємо кількість записів на сторінці
+    try:
+        articles_list = Articles.query.order_by(Articles.id.desc()).all()
+
+        # Перевіряємо, чи ми не зайшли на номер сторінки, якої немає
+        pages_count = math.ceil(len(articles_list) / page_size)
+        if page < 1 or pages_count == 0:
+            page = 1
+        elif page > pages_count:
+            page = pages_count
+        
+        # Отримуємо тільки записи зі сторінки, на якій ми знаходимося
+        articles_list = articles_list[page_size*(page-1):page_size*page]
+
+        return render_template("articles_list.html", account=account, articles_list=articles_list, page=page)
+    except:
+        return render_template("articles_list.html", message="error", account=account, page=page)
+    
+
+@app.route("/account/achievements_list/page=<int:page>/<int:id>", methods=['POST', 'GET'])
+def achievements_list(id, page):
     account = Account.query.get(id)
 
     # Можливість створити новину
