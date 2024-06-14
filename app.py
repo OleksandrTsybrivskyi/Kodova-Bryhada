@@ -66,7 +66,8 @@ def home():
 
 @app.route("/account/Admin")
 def Admin_own():
-    return render_template("Admin_account.html")
+    account = Account.query.get(1)
+    return render_template("Admin_account.html", account=account)
 
 @app.route("/login", methods=['POST', 'GET'])
 def login():
