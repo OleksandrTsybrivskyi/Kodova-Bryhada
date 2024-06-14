@@ -123,3 +123,20 @@ color:var(--blue-color);}
 form input[type="radio"] {
   width: 20px;
 }
+
+#add_subgect{
+width:30%;
+ float:left;
+ margin:30px;
+ display:flex;
+ justify-content:between-space;
+ flex-wrap: wrap;
+ width:30%;}
+
+.subject-block{
+
+background-color:var(--white-color);
+color:var(--orange-color);
+border:3px solid var(--orange-color);
+padding:20px;
+margin:20px;}

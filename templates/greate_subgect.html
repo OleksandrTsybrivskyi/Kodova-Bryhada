@@ -1,21 +1,23 @@
 {% extends 'after_login_base.html' %}
 {% block title %}{{ account.full_name }}{% endblock %}
 {% block body %}
+<div id="subgects">
+<form method="post" id="add_subgect" >
     <h1>{{ account.full_name }} - {{account.role}}</h1>
-<form method="post">
-    <h1>Add subject</h1>
+    <h1>Додати придмет</h1>
     <input type="text" name="subject_name" value="ведіть імя предмету">
-    <input type="submit" value="додати предмет">
+    <input type="submit" value="додати предмет" class="orange-button">
 </form>
+
 {% if subjects %}
 {% for subject in subjects %}
 <div class="subject-block">
 <h3>предмет: {{subject.subject_name}}</h3>
-    <h3>{{subject.id}} код для приєднання до предмету</h3></div>
+    <h3>{{subject.id}}: код для приєднання до предмету</h3></div>
 {% endfor %}
 {% elif sss %}
 {% for ss in sss %}
 <h3>{{ss.subject_name}}</h3>
 {% endfor %}
-{% endif %}
+{% endif %}</div>
 {% endblock %}
