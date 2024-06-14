@@ -1,24 +1,12 @@
 {% extends 'after_login_base.html' %}
 {% block title %}{{ account.full_name }}{% endblock %}
 {% block body %}
-    <h1>{{ account.full_name }}</h1>
-    <h2>{{account.role}}</h2>
-    <h2>{{account.email}}</h2>
-
-<div class="sidebar">
-    <ul style="list-style-type: none;"> <!-- Зміна стилю списку -->
-        <li><a href="/account/{{account.id}}"> Головна сторінка</a></li>
-        <li><a href="/"> Новини</a></li>
-        <li><a href="/"> Розклад</a></li>
-        <li><a href="/"> Журнал</a></li>
-        <li><a href="/account/marks/{{account.id}}"> Досягнення </a></li>
-        <li><a href="/greate_subgect/{{account.id}}"> Предмети</a></li>
-        <li><a href="/"> Учні</a></li>
-        <li><a href="/"> Учителі</a></li>
+    <div id="user_information">
+        <img src="static/Assets/User_Icon.svg">
+        <h1>{{ account.full_name }}</h1>
+        <h2>{{account.role}}</h2>
+        <h2>{{account.email}}</h2></div>
 
 
-        <!-- Додайте інші пункти меню, які вам потрібні -->
-    </ul>
-</div>
 
 {% endblock %}
