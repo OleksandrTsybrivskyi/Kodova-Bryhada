@@ -2,13 +2,12 @@
 {% block title %}{{ account.full_name }}{% endblock %}
 {% block body %}
 <div id="subgects">
-<form method="post" id="add_subgect" >
+<form method="post" id="add_subgect">
     <h1>{{ account.full_name }} - {{account.role}}</h1>
     <h1>Додати придмет</h1>
     <input type="text" name="subject_name" value="ведіть імя предмету">
     <input type="submit" value="додати предмет" class="orange-button">
 </form>
-
 {% if subjects %}
 {% for subject in subjects %}
 <div class="subject-block">
