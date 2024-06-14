@@ -1,0 +1,24 @@
+{% extends 'after_login_base.html' %}
+{% block title %}{{ account.full_name }}{% endblock %}
+{% block body %}
+    <h1>{{ account.full_name }} - {{account.role}}</h1>
+<form method="post">
+    <h1>Список новин</h1>
+    <a href="/account/articles_list/page={{ page-1 }}/{{ account.id }}">Назад</a>
+    <h1>{{page}}</h1>
+    <a href="/account/articles_list/page={{ page+1 }}/{{ account.id }}">Вперід</a>
+    {% if account.role == "вчитиль" or account.role == "Admin" %}
+    <h2>Створити новину</h2><br>
+    <input type="text" name="article_topic" placeholder="Введіть тему новини"><br>
+    <textarea name="article_text"></textarea><br>
+    <input type = "submit" value="Створити">
+    {% endif %}
+</form>
+{% if articles_list %}
+{% for article in articles_list %}
+<div class="subject-block">
+<h3>{{article.article_topic}}</h3>
+    <h4>{{article.article_text}}</h4></div>
+{% endfor %}
+{% endif %}
+{% endblock %}
