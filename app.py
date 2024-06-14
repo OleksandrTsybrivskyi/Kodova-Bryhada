@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from sqlalchemy.exc import IntegrityError
+import math
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = 'sqlite:///spl.db'
@@ -44,6 +45,12 @@ class StudentSubject(db.Model):
 
     def __repr__(self):
         return '<StudentSubject %r>' % self.id
+
+class Articles(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    article_topic = db.Column(db.String(100), nullable=False)
+    article_text = db.Column(db.String(1000))
+    teacher_id = db.Column(db.Integer)
 
 with app.app_context():
     account = Account(email="Admin@gmail.com", full_name="Admin", password="Admin", role="Admin")
@@ -178,7 +185,95 @@ def marks(id):
             return render_template("teacher_Marks.html", account=account, sss=sss, subjects=subjects)
         else:
             return render_template("teacher_Marks.html", account=account, subjects=subjects)
+        
 
+@app.route("/account/students_list/page=<int:page>/<int:id>", methods=['POST', 'GET'])
+def students_list(id, page):
+    account = Account.query.get(id)
+    if request.method == "POST":
+        if "Назад" in request.form:
+            print(1)
+        if "Вперід" in request.form:
+            print(2)
+    page_size=4
+    try:
+        students_list = Account.query.filter_by(role="учень").order_by(Account.full_name).all()
+
+        #Перевіряємо, чи ми не зайшли на номер сторінки, якої немає
+        pages_count = math.ceil(len(students_list) / page_size)
+        if page < 1:
+            page = 1
+        elif page > pages_count:
+            page = pages_count
+        
+        students_list = students_list[page_size*(page-1):page_size*page]
+
+        return render_template("students_list.html", account=account, students_list=students_list, page=page)
+    except:
+        return render_template("students_list.html", message="error", account=account, page=page)
+
+
+@app.route("/account/teachers_list/page=<int:page>/<int:id>", methods=['POST', 'GET'])
+def teachers_list(id, page):
+    account = Account.query.get(id)
+    if request.method == "POST":
+        if "Назад" in request.form:
+            print(1)
+        if "Вперід" in request.form:
+            print(2)
+    page_size=4
+    try:
+        teachers_list = Account.query.filter_by(role="вчитиль").order_by(Account.full_name).all()
+
+        #Перевіряємо, чи ми не зайшли на номер сторінки, якої немає
+        pages_count = math.ceil(len(teachers_list) / page_size)
+        if page < 1:
+            page = 1
+        elif page > pages_count:
+            page = pages_count
+        
+        teachers_list = teachers_list[page_size*(page-1):page_size*page]
+
+        return render_template("teachers_list.html", account=account, teachers_list=teachers_list, page=page)
+    except:
+        return render_template("teachers_list.html", message="error", account=account, page=page)
+    
+
+@app.route("/account/articles_list/page=<int:page>/<int:id>", methods=['POST', 'GET'])
+def articles_list(id, page):
+    account = Account.query.get(id)
+
+    # Можливість створити новину
+    if account.role == "вчитиль" or account.role == "Admin":
+        if request.method == "POST":
+            article_topic = request.form["article_topic"]
+            article_text = request.form["article_text"]
+            article = Articles(article_topic=article_topic, article_text=article_text, teacher_id=id)
+
+            try:
+                db.session.add(article)
+                db.session.commit()
+            except:
+                db.session.rollback()
+                return render_template("articles_list.html", message="Помилка")
+
+    page_size=4 # Задаємо кількість записів на сторінці
+    try:
+        articles_list = Articles.query.order_by(Articles.id.desc()).all()
+
+        # Перевіряємо, чи ми не зайшли на номер сторінки, якої немає
+        pages_count = math.ceil(len(articles_list) / page_size)
+        if page < 1 or pages_count == 0:
+            page = 1
+        elif page > pages_count:
+            page = pages_count
+        
+        # Отримуємо тільки записи зі сторінки, на якій ми знаходимося
+        articles_list = articles_list[page_size*(page-1):page_size*page]
+
+        return render_template("articles_list.html", account=account, articles_list=articles_list, page=page)
+    except:
+        return render_template("articles_list.html", message="error", account=account, page=page)
 
 
 if __name__ == "__main__":

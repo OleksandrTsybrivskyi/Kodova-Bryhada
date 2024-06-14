@@ -1,0 +1,18 @@
+{% extends 'after_login_base.html' %}
+{% block title %}{{ account.full_name }}{% endblock %}
+{% block body %}
+    <h1>{{ account.full_name }} - {{account.role}}</h1>
+<form method="post">
+    <h1>Список учнів</h1>
+    <a href="/account/students_list/page={{ page-1 }}/{{ account.id }}">Назад</a>
+    <h1>{{page}}</h1>
+    <a href="/account/students_list/page={{ page+1 }}/{{ account.id }}">Вперід</a>
+</form>
+{% if students_list %}
+{% for student in students_list %}
+<div class="subject-block">
+<h3>Прізвище та ім'я: {{student.full_name}}</h3>
+    <h3>Електронна пошта: {{student.email}}</h3></div>
+{% endfor %}
+{% endif %}
+{% endblock %}
