@@ -4,7 +4,6 @@
 <nav id="sign-conteiner">
 
     <img src="/static\Assets\Edulandia_Logo.svg">
-    <a href="/account/{{account.id}}"> Головна сторінка</a>
         <a href="/account/articles_list/page=1/{{account.id}}"> Новини</a>
         <a href="/"> Розклад</a>
         <a href="/"> Журнал</a>
@@ -12,11 +11,8 @@
         <a href="/greate_subgect/{{account.id}}"> Предмети</a>
         <a href="/account/students_list/page=1/{{account.id}}"> Учні</a>
         <a href="/account/teachers_list/page=1/{{account.id}}"> Учителі</a></div>
-
-    <img src="/static/Assets/Edulandia_Logo.svg">
-    <a href="/account/{{account.id}}">Головна сторінка</a>
-    <a href="/greate_subgect/{{account.id}}">Предмети</a>
-    <a href=""></a></div>
+        <a href="/account/{{account.id}}">Головна сторінка</a>
+        <a href=""></a></div>
 
 </nav>
 <main id="login_conteiner">{% block body %}{% endblock %}</main>
