@@ -3,15 +3,16 @@
 {% block body %}
 <main>
     <form method="post" id="add_subgect">
-    <h1>{{ account.full_name }} - {{account.role}}</h1>
     <h1>Додати придмет</h1>
     <input type="text" name="subject_name" value="ведіть імя предмету">
     <input type="submit" value="додати предмет" class="orange-button">
+</form>
+
+<div class="subject-block_conteiner">
+    <div class="arrows_conteiner">
     <a href="/greate_subgect/page={{ page-1 }}/{{ account.id }}"><img src="/static\Assets\arrow_left.svg" class="arrows"></a>
     <h1>{{page}}</h1>
-    <a href="/greate_subgect/page={{ page+1 }}/{{ account.id }}"><img src="/static\Assets\arrow_right.svg" class="arrows"></a>
-</form>
-<div class="subject-block_conteiner">
+            <a href="/greate_subgect/page={{ page+1 }}/{{ account.id }}"><img src="/static\Assets\arrow_right.svg" class="arrows"></a></div>
 {% if subjects %}
 {% for subject in subjects %}
     <div class="subject-block">
