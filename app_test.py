@@ -1,7 +1,11 @@
 import pytest
-import app
-from bs4 import BeautifulSoup
+import shutil
 
+
+# Створення резервної копії бази даних перед тестуванням
+shutil.copyfile("instance/spl.db", "instance/spl_copy.db")
+
+import app
 
 app.app.config['TESTING'] = True
 ctx = app.app.app_context()
@@ -132,6 +136,9 @@ def test_greate_subgect(id, subject_name):
     response = app.app.test_client().post('/greate_subgect/'+id, data=dict(
         subject_name=subject_name,
     ),follow_redirects=True)
-    
+    assert "/greate_subgect" in response.request.path
 
-    # assert "/greate_subgect" in response.request.path
+
+def test_recover_old_database():
+    # Відновлення старої бази даних після завершення тестування
+    shutil.copyfile("instance/spl_copy.db", "instance/spl.db")
