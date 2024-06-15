@@ -150,7 +150,7 @@ width:30%;
     border:3px solid var(--dark-grey-color);
     display:flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
     width:150px;
     position:fixed;
     top:70px;
