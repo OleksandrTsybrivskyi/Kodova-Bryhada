@@ -1,20 +1,33 @@
 {% extends 'root.html' %}
 {% block title %}Edulandia{% endblock %}
 {% block root %}
+<script>
+    function move_nav(){
+        let menu = document.getElementById("menu");
+        if (menu.style.left === "0px") {
+            menu.style.left = "-160px";
+        } else {
+            menu.style.left = "0px";
+        }
+    }
+</script>
+
 <nav id="sign-conteiner">
 
     <img src="/static\Assets\Edulandia_Logo.svg">
+
+    <p id="menu_p"  onclick="move_nav()">menu</p></nav>
+    <div id="menu">
         <a href="/account/articles_list/page=1/{{account.id}}"> Новини</a>
         <a href="/"> Розклад</a>
         <a href="/"> Журнал</a>
         <a href="/account/marks/{{account.id}}"> Досягнення </a>
         <a href="/greate_subgect/{{account.id}}"> Предмети</a>
         <a href="/account/students_list/page=1/{{account.id}}"> Учні</a>
-        <a href="/account/teachers_list/page=1/{{account.id}}"> Учителі</a></div>
+        <a href="/account/teachers_list/page=1/{{account.id}}"> Учителі</a>
         <a href="/account/{{account.id}}">Головна сторінка</a>
         <a href=""></a></div>
 
-</nav>
 {% block body %}{% endblock %}
 
 {% endblock %}

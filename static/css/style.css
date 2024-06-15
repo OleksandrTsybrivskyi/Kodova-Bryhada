@@ -145,3 +145,31 @@ box-shadow:1px 1px 20px var(--dark-blue-color);}
     float:left;
 }
 
+#menu{
+    border:3px solid var(--dark-grey-color);
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width:150px;
+    position:fixed;
+    top:70px;
+    left:0;
+    height:100vh;
+    text-align: center;
+    background-color:var(--dark-blue-color);
+    transition: left 0.5s ease;
+}
+
+#menu a{
+    padding:20px 30px;
+    color:var(--light-grey-color);
+    }
+#menu a:hover{
+    background-color:var(--orange-color);}
+
+#menu_p{
+    display:inline-block;
+    position:absolute;
+    left:120px;
+    font-size:17pt;
+    color:var(--blue-color);}
