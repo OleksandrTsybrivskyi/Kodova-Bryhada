@@ -12,10 +12,10 @@ db = SQLAlchemy(app)
 
 class Account(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    full_name = db.Column(db.String(100), nullable=False)
+    full_name = db.Column(db.String(100), )
     email = db.Column(db.String(30), nullable=False, unique=True)
-    role = db.Column(db.String(30), nullable=False)
-    password = db.Column(db.String(100), nullable=False)
+    role = db.Column(db.String(30) )
+    password = db.Column(db.String(100))
 
     def __repr__(self):
         return '<Account %r>' % self.id
@@ -48,7 +48,7 @@ class StudentSubject(db.Model):
 
 class Articles(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    article_topic = db.Column(db.String(100), nullable=False)
+    article_topic = db.Column(db.String(100))
     article_text = db.Column(db.String(1000))
     teacher_id = db.Column(db.Integer)
 
@@ -67,7 +67,7 @@ def home():
 @app.route("/account/Admin")
 def Admin_own():
     account = Account.query.get(1)
-    return render_template("Admin_account.html", account=account)
+    return render_template("your_account.html", account=account)
 
 @app.route("/login", methods=['POST', 'GET'])
 def login():
@@ -133,7 +133,7 @@ def greate_subgect(id):
                 db.session.add(subject)
                 db.session.commit()
                 subjects = Subject.query.all()
-                return render_template("admin_add_subgect.html", subjects=subjects)
+                return render_template("admin_add_subgect.html", subjects=subjects,account=account)
             except:
                 return render_template("admin_add_subgect.html", message="error")
         return render_template("admin_add_subgect.html", account=account)

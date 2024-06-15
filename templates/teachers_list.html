@@ -1,18 +1,18 @@
 {% extends 'after_login_base.html' %}
 {% block title %}{{ account.full_name }}{% endblock %}
 {% block body %}
-    <h1>{{ account.full_name }} - {{account.role}}</h1>
-<form method="post">
+<main><div class="arrows_conteiner">
     <h1>Список вчителів</h1>
-    <a href="/account/teachers_list/page={{ page-1 }}/{{ account.id }}">Назад</a>
+    <a href="/account/teachers_list/page={{ page-1 }}/{{ account.id }}"><img src="/static\Assets\arrow_left.svg" class="arrows"></a>
     <h1>{{page}}</h1>
-    <a href="/account/teachers_list/page={{ page+1 }}/{{ account.id }}">Вперід</a>
-</form>
+    <a href="/account/teachers_list/page={{ page+1 }}/{{ account.id }}"><img src="/static\Assets\arrow_right.svg" class="arrows"></a>
+</div>
 {% if teachers_list %}
 {% for teacher in teachers_list %}
-<div class="subject-block">
-<h3>Прізвище та ім'я: {{teacher.full_name}}</h3>
-    <h3>Електронна пошта: {{teacher.email}}</h3></div>
+<div class="smb-block">
+<h3>{{teacher.full_name}}</h3>
+    <img src="/static\Assets\User_Icon.svg" width="150px">
+    <h3>{{teacher.email}}</h3></div>
 {% endfor %}
-{% endif %}
+{% endif %}</main>
 {% endblock %}

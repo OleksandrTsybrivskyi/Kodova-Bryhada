@@ -132,14 +132,15 @@ width:30%;
  justify-content:between-space;
  flex-wrap: wrap;}
 
-.subject-block{
-display:inline-block;
-width:20%;
-background-color:var(--dark-blue-color);
-color:var(--light-grey-color);
-padding:20px;
-margin:20px;
-box-shadow:1px 1px 20px var(--dark-blue-color);}
+.smb-block{
+    display:inline-block;
+    text-align:center;
+    width:175px;
+    height:250px;
+    background-color:var(--dark-blue-color);
+    color:var(--light-grey-color);
+    padding:20px;
+    margin:20px;}
 
 #page_name{
     float:left;
@@ -153,8 +154,8 @@ box-shadow:1px 1px 20px var(--dark-blue-color);}
     width:150px;
     position:fixed;
     top:70px;
-    left:0;
-    height:100vh;
+    left:-160px;
+    height:85vh;
     text-align: center;
     background-color:var(--dark-blue-color);
     transition: left 0.5s ease;
@@ -173,3 +174,83 @@ box-shadow:1px 1px 20px var(--dark-blue-color);}
     left:120px;
     font-size:17pt;
     color:var(--blue-color);}
+
+#greate_new{
+    width:100%;
+    text-align:left;
+    padding:0;
+    margin:0;
+    }
+#greate_new input[type="submit"]{
+    width:100px;}
+
+#greate_new textarea{
+height:150px;}
+
+.arrows{
+    text-align: center;
+    margin:0 auto;
+    width:30px;
+    padding:0 10px;}
+textarea{
+    width:98%;
+    border:3px solid var(--light-grey-color);}
+
+
+
+#user_information *{
+    color:var(--white-color);
+    margin:10px;}
+
+#user_information_conteiner{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    }
+
+#user_information{
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+    height:300px;
+    width:600px;
+    background-color:var(--dark-blue-color);
+    padding:30px;
+    text-align:center;
+}
+
+.triangular{
+    position:relative;
+    width:150px;
+    height:150px;
+    bottom:-105px;
+    right:-42px;
+    margin:0;}
+
+.arrows_conteiner{
+    display:block;
+    text-align:center;}
+
+.arrows_conteiner *{
+    display:inline-block;}
+
+.article{
+    width:calm(100%-40px);
+    color:var(--dark-blue-color);
+    background-color:var(--light-grey-color);
+    padding:20px;
+    margin:20px 0;
+    }
+.subject-block_conteiner{
+    display:flex;
+    text-align:center;
+    width:100%;
+    display:inline-block;
+}
+
+.subject-block{
+    background-color:var(--dark-blue-color);
+    color:var(--white-color);
+    display:inline-block;
+    margin:10px 20px;
+    padding:10px;}

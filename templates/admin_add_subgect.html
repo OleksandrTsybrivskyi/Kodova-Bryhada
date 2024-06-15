@@ -1,17 +1,20 @@
 {% extends 'after_login_base.html' %}
 {% block title %}Admin{% endblock %}
 {% block body %}
-<form method="post">
-    <h1>Add subject</h1>
-    <input type="text" name="subject_name" placeholder="ведіть імя предмету"><br>
-    <input type="email" name="teacher_email" placeholder="ведіть емейл викладача"><br>
-    <input type="submit" value="додати предмет">
+<main>
+<form method="post" id="add_subgect">
+    <h1>{{ account.full_name }} - Admin</h1>
+    <h1>Додати придмет</h1>
+    <input type="text" name="subject_name" value="ведіть імя предмету">
+    <input type="email" name="teacher_email" placeholder="ведіть емейл викладача">
+    <input type="submit" value="додати предмет" class="orange-button">
 </form>
+<div class="subject-block_conteiner">
 {% if subjects %}
 {% for subject in subjects %}
+<div class="subject-block">
 <h3>{{subject.subject_name}}</h3>
-<h3>{{subject.id}} код для приєднання до предмету</h3>
+    <h3>{{subject.id}} код для приєднання до предмету</h3></div>
 {% endfor %}
-
-{% endif %}
+        {% endif %}</div></main>
 {% endblock %}

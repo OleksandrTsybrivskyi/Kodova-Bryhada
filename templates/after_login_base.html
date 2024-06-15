@@ -13,10 +13,9 @@
 </script>
 
 <nav id="sign-conteiner">
-
+    <img src="/static\Assets\menu_icon.svg"  onclick="move_nav()" height="70px">
     <img src="/static\Assets\Edulandia_Logo.svg">
-
-    <p id="menu_p"  onclick="move_nav()">menu</p></nav>
+</nav>
     <div id="menu">
         <a href="/account/articles_list/page=1/{{account.id}}"> Новини</a>
         <a href="/"> Розклад</a>
@@ -26,7 +25,7 @@
         <a href="/account/students_list/page=1/{{account.id}}"> Учні</a>
         <a href="/account/teachers_list/page=1/{{account.id}}"> Учителі</a>
         <a href="/account/{{account.id}}">Головна сторінка</a>
-        <a href=""></a></div>
+        </div>
 
 {% block body %}{% endblock %}
 

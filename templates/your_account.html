@@ -1,9 +1,11 @@
 {% extends 'after_login_base.html' %}
 {% block title %}{{ account.full_name }}{% endblock %}
 {% block body %}
-<div id="user_information", align="left">
-    <img src="/static/Assets/User_Icon.svg"  width="50" height="50">
-    <h1>{{account.full_name }}</h1>
-    <h2>{{account.role}}</h2>
+<main id="user_information_conteiner">
+<div id="user_information">
+    <div><img src="/static\Assets\User_Icon.svg" width="150" height="150">
     <h2>{{account.email}}</h2></div>
+    <div><h1>{{account.full_name }}</h1><br>
+    <h2>{{account.role}}</h2></div><img src="/static\Assets\orange_corner_right.svg" class="triangular">
+    </div></main>
 {% endblock %}
