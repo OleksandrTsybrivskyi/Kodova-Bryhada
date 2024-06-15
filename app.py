@@ -94,8 +94,8 @@ def your_account(id):
 
 
 
-@app.route("/greate_subgect/<int:id>", methods=['POST', 'GET'])
-def greate_subgect(id):
+@app.route("/greate_subgect/page=<int:page>/<int:id>", methods=['POST', 'GET'])
+def greate_subgect(id, page):
     account = Account.query.get(id)
     if account.role == "вчитиль":
         if request.method == "POST":
@@ -106,22 +106,49 @@ def greate_subgect(id):
                 db.session.add(subject)
                 db.session.commit()
             except:
-                return render_template("greate_subgect.html", message="error", account=account)
+                return render_template("greate_subgect.html", message="error", account=account, page=page)
         try:
             subjects = Subject.query.filter_by(teacher_id=id).order_by(Subject.subject_name).all()
-            return render_template("greate_subgect.html", account=account, subjects=subjects)
+
+            page_size=4 # Задаємо кількість записів на сторінці
+            # Перевіряємо, чи ми не зайшли на номер сторінки, якої немає
+            pages_count = math.ceil(len(subjects) / page_size)
+            if page < 1 or pages_count == 0:
+                page = 1
+            elif page > pages_count:
+                page = pages_count
+            
+            # Отримуємо тільки записи зі сторінки, на якій ми знаходимося
+            subjects = subjects[page_size*(page-1):page_size*page]
+            return render_template("greate_subgect.html", account=account, subjects=subjects, page=page)
         except:
-            return render_template("greate_subgect.html", account=account)
+            return render_template("greate_subgect.html", account=account, page=page)
     elif account.role == "учень":
         if request.method == "POST":
-
             subject_id = request.form["subject_name"]
-            subject_name = Subject.query.get(subject_id).subject_name
-            ss = StudentSubject(subject_id=subject_id, user_id=id, subject_name=subject_name)
-            db.session.add(ss)
-            db.session.commit()
+            try:
+                subject_name = Subject.query.get(subject_id).subject_name
+                ss = StudentSubject(subject_id=subject_id, user_id=id, subject_name=subject_name)
+                db.session.add(ss)
+                db.session.commit()
+            except:
+                return render_template("greate_subgect.html", message="Предмету з таким айді не існує", account=account, page=page)
+        try:
             sss = StudentSubject.query.filter_by(user_id=id).all()
-            return render_template("greate_subgect.html", account=account, sss=sss)
+            page_size=4 # Задаємо кількість записів на сторінці
+
+            # Перевіряємо, чи ми не зайшли на номер сторінки, якої немає
+            pages_count = math.ceil(len(sss) / page_size)
+            if page < 1 or pages_count == 0:
+                page = 1
+            elif page > pages_count:
+                page = pages_count
+            
+            # Отримуємо тільки записи зі сторінки, на якій ми знаходимося
+            sss = sss[page_size*(page-1):page_size*page]
+            return render_template("greate_subgect.html", account=account, sss=sss, page=page)
+        except:
+            return render_template("greate_subgect.html", account=account, page=page)
     else:
         if request.method == "POST":
             subject_name = request.form["subject_name"]
@@ -133,10 +160,33 @@ def greate_subgect(id):
                 db.session.add(subject)
                 db.session.commit()
                 subjects = Subject.query.all()
-                return render_template("admin_add_subgect.html", subjects=subjects,account=account)
+
+                page_size=4 # Задаємо кількість записів на сторінці
+                # Перевіряємо, чи ми не зайшли на номер сторінки, якої немає
+                pages_count = math.ceil(len(subjects) / page_size)
+                if page < 1 or pages_count == 0:
+                    page = 1
+                elif page > pages_count:
+                    page = pages_count
+                
+                # Отримуємо тільки записи зі сторінки, на якій ми знаходимося
+                subjects = subjects[page_size*(page-1):page_size*page]
+                return render_template("admin_add_subgect.html", subjects=subjects,account=account, page=page)
             except:
-                return render_template("admin_add_subgect.html", message="error")
-        return render_template("admin_add_subgect.html", account=account)
+                return render_template("admin_add_subgect.html", message="error", page=page)
+        subjects = Subject.query.all()
+
+        page_size=4 # Задаємо кількість записів на сторінці
+        # Перевіряємо, чи ми не зайшли на номер сторінки, якої немає
+        pages_count = math.ceil(len(subjects) / page_size)
+        if page < 1 or pages_count == 0:
+            page = 1
+        elif page > pages_count:
+            page = pages_count
+        
+        # Отримуємо тільки записи зі сторінки, на якій ми знаходимося
+        subjects = subjects[page_size*(page-1):page_size*page]
+        return render_template("admin_add_subgect.html", account=account, subjects=subjects, page=page)
 
     return render_template("greate_subgect.html", account=account) # Додайте цей рядок
 
@@ -201,7 +251,7 @@ def students_list(id, page):
 
         #Перевіряємо, чи ми не зайшли на номер сторінки, якої немає
         pages_count = math.ceil(len(students_list) / page_size)
-        if page < 1:
+        if page < 1 or pages_count == 0:
             page = 1
         elif page > pages_count:
             page = pages_count
@@ -227,7 +277,7 @@ def teachers_list(id, page):
 
         #Перевіряємо, чи ми не зайшли на номер сторінки, якої немає
         pages_count = math.ceil(len(teachers_list) / page_size)
-        if page < 1:
+        if page < 1 or pages_count == 0:
             page = 1
         elif page > pages_count:
             page = pages_count

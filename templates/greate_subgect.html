@@ -7,6 +7,9 @@
     <h1>Додати придмет</h1>
     <input type="text" name="subject_name" value="ведіть імя предмету">
     <input type="submit" value="додати предмет" class="orange-button">
+    <a href="/greate_subgect/page={{ page-1 }}/{{ account.id }}"><img src="/static\Assets\arrow_left.svg" class="arrows"></a>
+    <h1>{{page}}</h1>
+    <a href="/greate_subgect/page={{ page+1 }}/{{ account.id }}"><img src="/static\Assets\arrow_right.svg" class="arrows"></a>
 </form>
 <div class="subject-block_conteiner">
 {% if subjects %}
