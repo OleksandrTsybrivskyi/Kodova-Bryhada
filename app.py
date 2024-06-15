@@ -291,34 +291,36 @@ def achievements_list(id, page):
     # Можливість створити новину
     if account.role == "вчитиль" or account.role == "Admin":
         if request.method == "POST":
-            article_topic = request.form["article_topic"]
-            article_text = request.form["article_text"]
-            article = Articles(article_topic=article_topic, article_text=article_text, teacher_id=id)
+            achievement_topic = request.form["achievement_topic"]
+            achievement_text = request.form["achievement_text"]
+            recepient_email = request.form["recepient_email"]
+            recepient_id = Account.query.filter_by(email=recepient_email).first()
+            achievement = Achievements(achievement_topic=achievement_topic, achievement_text=achievement_text, giver_id=id, recepient_id=recepient_id)
 
             try:
-                db.session.add(article)
+                db.session.add(achievement)
                 db.session.commit()
             except:
                 db.session.rollback()
-                return render_template("articles_list.html", message="Помилка")
+                return render_template("achievements_list.html", message="Помилка")
 
     page_size=4 # Задаємо кількість записів на сторінці
     try:
-        articles_list = Articles.query.order_by(Articles.id.desc()).all()
+        achievements_list = Achievements.query.order_by(Achievements.id.desc()).all()
 
         # Перевіряємо, чи ми не зайшли на номер сторінки, якої немає
-        pages_count = math.ceil(len(articles_list) / page_size)
+        pages_count = math.ceil(len(achievements_list) / page_size)
         if page < 1 or pages_count == 0:
             page = 1
         elif page > pages_count:
             page = pages_count
         
         # Отримуємо тільки записи зі сторінки, на якій ми знаходимося
-        articles_list = articles_list[page_size*(page-1):page_size*page]
+        achievements_list = achievements_list[page_size*(page-1):page_size*page]
 
-        return render_template("articles_list.html", account=account, articles_list=articles_list, page=page)
+        return render_template("achievements_list.html", account=account, achievements_list=achievements_list, page=page)
     except:
-        return render_template("articles_list.html", message="error", account=account, page=page)
+        return render_template("achievements_list.html", message="error", account=account, page=page)
 
 
 if __name__ == "__main__":
